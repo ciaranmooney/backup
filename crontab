@@ -1,0 +1,2 @@
+@daily      root    /opt/backup-daily.sh
+@monthly    root    /opt/backup-monthly.sh
