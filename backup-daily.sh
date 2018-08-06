@@ -1,1 +1,1 @@
-duplicity --exclude /home/*/.local/share/Trash /home file:///mnt/backup
+duplicity --exclude-filelist exclude-list.lst /home file:///mnt/backup
