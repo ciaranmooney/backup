@@ -2,6 +2,8 @@ My backup stratergy for home laptop.
 
 Install
 --
+- Edit sudo crontab to run each script, daily and monthly
+
 
 Server Config
 ---
