@@ -1,4 +1,7 @@
 /home/*/.local/share/Trash
 /home/*/Music
 /home/*/Downloads
-
+/home/*/.Private
+/home/*/.adobe
+/home/*/.cache
+/home/*/.compiz
