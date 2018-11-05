@@ -10,7 +10,7 @@ Install
 --
 - Edit sudo crontab to run each script, daily and monthly. See included crontab
 example.
-- Copy backup-daily.sh, backup-montly.sh, exclude-list.lst to /opt.
+- Copy rync-daily.sh and exclude-list.lst to /opt.
 
 
 Server Config
@@ -20,7 +20,7 @@ Files
 /media/piDrive/UbuntuBackup     192.168.0.2(rw,no_subtree_check,all_squash,anonuid=34,anongid=34)
 Note, UID/GID 34 on default Raspbian is the backup user (intended for local)
 * Make sure directory (UbuntuBackup) is owned by backup user (sudo chown -R backup:backup ..)
-
+* Copy backup-daily.sh and backup-monthly.sh to /opt.
 
 TODO
 --
@@ -30,4 +30,14 @@ TODO
 * Create and securely store a GPG key (ie offline, printout). The key will be
 backed up in an encrypted file. If the key is lost from the laptop, recovery
 will not be possible
+* Currently unable to rsync either, there isn't enough space on the piDrive for the temperary files.
+* rysnc seems to work but takes just less than 24 hours for a full backup. May 
+be worth segregating small, medium and large files.
+
+
+Troubleshooting
+--
+
+If rysnc gives "lack of space error", try rebooting the nfs service on the
+raspberry pi. This is done by "sudo service nfs-kernel-server restart".
 
