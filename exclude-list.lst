@@ -5,3 +5,5 @@
 /home/*/.adobe
 /home/*/.cache
 /home/*/.compiz
+/home/*/.config
+/home/*/.mozilla
