@@ -2,9 +2,13 @@ My backup stratergy for home laptop.
 
 Strategy
 --
-Using duplicity over WiFi network takes too long. It takes >24 hours after an initial test. TO remove this bottle neck \home will be rsync'd directly to NFS share. Then duplicity will be run on the RaspberryPi NFS share to create archived backups. This has a dual benefit of a mirror backup available.
+Using duplicity over WiFi network takes too long. It takes >24 hours after an 
+initial test. TO remove this bottle neck \home will be rsync'd directly to NFS 
+share. Then duplicity will be run on the RaspberryPi NFS share to create 
+archived backups. This has a dual benefit of a mirror backup available.
 
-The duplicity created backups can then be rsync'd off site (eg Google Nearline/Coldline).
+The duplicity created backups can then be rsync'd off site 
+(eg Google Nearline/Coldline).
 
 Install
 --
