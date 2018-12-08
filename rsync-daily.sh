@@ -1,3 +1,7 @@
+# Client backup script
+# Ciarân Mooney
+# 2018
+
 # Log start time
 rsync -rvz --exclude-from exclude-list.lst --times \
     --max-size=1M /home /mnt/backup
