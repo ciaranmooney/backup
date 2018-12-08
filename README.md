@@ -34,7 +34,6 @@ TODO
 * Create and securely store a GPG key (ie offline, printout). The key will be
 backed up in an encrypted file. If the key is lost from the laptop, recovery
 will not be possible
-* Currently unable to rsync either, there isn't enough space on the piDrive for the temperary files.
 * rysnc seems to work but takes just less than 24 hours for a full backup. May 
 be worth segregating small, medium and large files.
 
