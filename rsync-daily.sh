@@ -3,10 +3,12 @@
 # 2018
 
 # Log start time
+# Backup small files first
 rsync -rvz --exclude-from exclude-list.lst --times \
     --max-size=1M /home /mnt/backup
 # Log end time
 # Log start time
+# Backup larger files second
 rsync -rvz --exclude-from exclude-list.lst --times \
     --min-size=1M /home /mnt/backup
 # Log end time
