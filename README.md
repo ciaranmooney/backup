@@ -7,6 +7,16 @@ initial test. TO remove this bottle neck \home will be rsync'd directly to NFS
 share. Then duplicity will be run on the RaspberryPi NFS share to create 
 archived backups. This has a dual benefit of a mirror backup available.
 
+The client (Laptop) will backup small files first and then large files using
+rysnc. Creating a mirror copy on the server. When both stages of the backup 
+are comeplete a "complete" flag will be set. This tells the server, after 
+a duplicity backup is finished, to delete the servers mirror  copy. This will 
+force the client to complete another full backup.
+
+The server (RaspberryPi) will backup incrementally (every day) and fully
+(week) using Duplicity. If the server completes a full backup and finds a
+"Complete" flag. It wipes the total contents.
+
 The duplicity created backups can then be rsync'd off site 
 (eg Google Nearline/Coldline).
 
