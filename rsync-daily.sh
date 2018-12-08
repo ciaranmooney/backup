@@ -10,6 +10,7 @@ rsync -rvz --exclude-from exclude-list.lst --times \
 rsync -rvz --exclude-from exclude-list.lst --times \
     --min-size=1M /home /mnt/backup
 # Log end time
+# Set complete flag
 
 # -r - recursive
 # -v - verbose
