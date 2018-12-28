@@ -22,8 +22,8 @@ The duplicity created backups can then be rsync'd off site
 
 Install
 --
-- Edit sudo crontab to run each script, daily and monthly. See included crontab
-example.
+- Edit "sudo crontab -e" to run each script, daily and monthly. See included 
+crontab example.
 - Copy rync-daily.sh and exclude-list.lst to /opt.
 - Copy montly-backup.sh to Raspberry pi
 - Create user "backup" with id 34. This is to match the backup user on
