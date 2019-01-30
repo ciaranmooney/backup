@@ -7,12 +7,12 @@
 # Log start time
 # Backup small files first
 rsync -rvz --exclude-from exclude-list.lst --times \
-    --max-size=1M /home /mnt/backup
+    --max-size=1M /home /mnt/backup > /var/log/backup.log 2> /var/log/backup.error.log
 # Log end time
 # Log start time
 # Backup larger files second
 rsync -rvz --exclude-from exclude-list.lst --times \
-    --min-size=1M /home /mnt/backup
+    --min-size=1M /home /mnt/backup > /var/log/backup.log 2> /bar/log/backup.error.log
 # Log end time
 # Set complete flag
 
