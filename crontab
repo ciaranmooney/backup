@@ -1,1 +1,1 @@
-@daily  /opt/rsync-daily.sh
+@daily  /opt/rsync-daily.sh > /var/log/backup.log 2> /var/log/backup.error.log
