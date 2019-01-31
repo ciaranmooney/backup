@@ -19,7 +19,7 @@ echo -- >> $BACKUP_LOG
 echo -- >> $BACKUP_LOG
 echo BACKING UP SMALL FILES >> $BACKUP_LOG
 rsync -rvz --exclude-from $EXCLUDE_LIST --times \
-    --max-size=1M /home /mnt/backup > $BACKUP_LOG 2> $ERROR_LOG
+    --max-size=1M /home /mnt/backup >> $BACKUP_LOG 2>> $ERROR_LOG
 # Log end time
 
 # Log start time
@@ -27,7 +27,7 @@ rsync -rvz --exclude-from $EXCLUDE_LIST --times \
 echo -- >> $BACKUP_LOG
 echo BACKING UP LARGE FILES >> $BACKUP_LOG
 rsync -rvz --exclude-from $EXCLUDE_LIST --times \
-    --min-size=1M /home /mnt/backup > $BACKUP_LOG 2> $ERROR_LOG
+    --min-size=1M /home /mnt/backup >> $BACKUP_LOG 2>> $ERROR_LOG
 # Log end time
 # Set complete flag
 
