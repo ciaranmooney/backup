@@ -3,17 +3,31 @@
 # Ciarân Mooney
 # 2018
 
+EXCLUDE_LIST=/opt/exclude-list.lst
+
+BACKUP_LOG=/var/log/backup.log
+ERROR_LOG=/var/log/backup.error.log
+
 # Check destination folder exists (ie wi-fi working, nfs working) 
-#
+
 # Log start time
+echo -- >> $BACKUP_LOG
+echo $(date) >> $BACKUP_LOG
+echo -- >> $BACKUP_LOG
+
 # Backup small files first
-rsync -rvz --exclude-from /opt/exclude-list.lst --times \
-    --max-size=1M /home /mnt/backup > /var/log/backup.log 2> /var/log/backup.error.log
+echo -- >> $BACKUP_LOG
+echo BACKING UP SMALL FILES >> $BACKUP_LOG
+rsync -rvz --exclude-from $EXCLUDE_LIST --times \
+    --max-size=1M /home /mnt/backup > $BACKUP_LOG 2> $ERROR_LOG
 # Log end time
+
 # Log start time
 # Backup larger files second
-rsync -rvz --exclude-from /opt/exclude-list.lst --times \
-    --min-size=1M /home /mnt/backup > /var/log/backup.log 2> /bar/log/backup.error.log
+echo -- >> $BACKUP_LOG
+echo BACKING UP LARGE FILES >> $BACKUP_LOG
+rsync -rvz --exclude-from $EXCLUDE_LIST --times \
+    --min-size=1M /home /mnt/backup > $BACKUP_LOG 2> $ERROR_LOG
 # Log end time
 # Set complete flag
 
