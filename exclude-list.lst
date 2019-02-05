@@ -7,3 +7,4 @@
 /home/*/.compiz
 /home/*/.config
 /home/*/.mozilla
+*.Trash-* # Some folders seem to have a hidden .Trash-1000
