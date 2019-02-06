@@ -37,11 +37,5 @@ echo -- Error log finished -- >> $ERROR_LOG
 echo $(date) >> $ERROR_LOG
 echo -- >> $ERROR_LOG
 
-
 # Set complete flag
-
-# -r - recursive
-# -v - verbose
-# -z - compress files during transfer
-# --times - compare times and copy if file modified
 
