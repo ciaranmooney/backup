@@ -8,6 +8,9 @@ EXCLUDE_LIST=/opt/exclude-list.lst
 BACKUP_LOG=/var/log/backup.log
 ERROR_LOG=/var/log/backup.error.log
 
+BACKUP_DIR=/home
+BACKUP_DESTINATION=/mnt/backup
+
 # Check destination folder exists (ie wi-fi working, nfs working) 
 
 # Log start time
@@ -24,7 +27,7 @@ echo -- >> $ERROR_LOG
 echo -- >> $BACKUP_LOG
 echo BACKING UP SMALL FILES >> $BACKUP_LOG
 rsync -rvz --exclude-from $EXCLUDE_LIST --times \
-    --max-size=1M /home /mnt/backup >> $BACKUP_LOG 2>> $ERROR_LOG
+    --max-size=1M $BACKUP_DIR $BACKUP_DESTINATION >> $BACKUP_LOG 2>> $ERROR_LOG
 # Log end time
 
 # Log start time
@@ -32,7 +35,10 @@ rsync -rvz --exclude-from $EXCLUDE_LIST --times \
 echo -- >> $BACKUP_LOG
 echo BACKING UP LARGE FILES >> $BACKUP_LOG
 rsync -rvz --exclude-from $EXCLUDE_LIST --times \
-    --min-size=1M /home /mnt/backup >> $BACKUP_LOG 2>> $ERROR_LOG
+    --min-size=1M $BACKUP_DIR $BACKUP_DESTINATION >> $BACKUP_LOG 2>> $ERROR_LOG
+
+# Created a file to designate backup completed.
+touch $BACKUP_DESTINATION/completed.flag
 
 # Log end time
 echo -- Finishing Backup -- >> $BACKUP_LOG
