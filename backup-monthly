@@ -21,11 +21,22 @@ echo -- Error Log Start -- >> $ERROR_LOG
 echo $(date) >> $ERROR_LOG
 echo -- >> $ERROR_LOG
 
-# Backup small files first
+# Check for completed Rsync-Backup from Client
+if [ ../completed.flag ];
+# If backup from client not completed, do incremental backup first.
 echo -- >> $DUPLICITY_LOG
 echo DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
-duplicity $BACKUP_SOURCE file:/$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
-duplicity remove-all-inc-of-but-n-full 30 --force $BACKUP_SOURCE >> $DUPLICITY_LOG 2>> $ERROR_LOG
+duplicity $BACKUP_SOURCE file:/$BACKUP_DESTINATION \
+    >> $DUPLICITY_LOG 2>> $ERROR_LOG
+
+# If Rsync-Backup from client completed, force full duplicity backup.
+duplicity full $BACKUP_SOURCE file:/$BACKUP_DESTINATION \
+    >> $DUPLICITY_LOG 2>> $ERROR_LOG
+duplicity remove-all-inc-of-but-n-full 30 --force $BACKUP_SOURCE \
+    >> $DUPLICITY_LOG 2>> $ERROR_LOG
+
+# Delete contents of backup directory for fresh Rsync.
+rm -fr $BACKUP_SOURCE
 
 # Log end time
 echo -- Finishing Backup -- >> $DUPLICITY_LOG
