@@ -39,6 +39,8 @@ rsync -rvz --exclude-from $EXCLUDE_LIST --times \
 
 # Created a file to designate backup completed.
 touch $BACKUP_DESTINATION/completed.flag
+echo -- Completed Backup -- >> $BACKUP_LOG
+echo -- Completed Flag Written -- >> $BACKUP_LOG
 
 # Log end time
 echo -- Finishing Backup -- >> $BACKUP_LOG
