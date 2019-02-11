@@ -1,6 +1,6 @@
 #!/bin/sh
 # Server backup script
-# Ciarân Mooney
+# Ciarán Mooney
 # 2019
 
 DUPLICITY_LOG=/var/log/duplicity.log

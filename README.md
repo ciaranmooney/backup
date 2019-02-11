@@ -22,8 +22,11 @@ The duplicity created backups can then be rsync'd off site
 
 Install
 --
-- Move rsync-daily to /etc/cron.daily/
-- Move exclude.lst to /opt
+- Run "install.sh"
+-- Moves rsync-daily to /etc/cron.daily/
+-- Moves exclude.lst to /opt
+-- Creates /var/log/backup
+-- XXX Creates log-rotate config
 - Copy montly-backup.sh to Raspberry pi
 - Create user "backup" with id 34. This is to match the backup user on
 RaspberryPi, see:
