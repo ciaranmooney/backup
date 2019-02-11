@@ -40,21 +40,30 @@ Files
 /media/piDrive/UbuntuBackup     192.168.0.2(rw,no_subtree_check,all_squash,anonuid=34,anongid=34)
 Note, UID/GID 34 on default Raspbian is the backup user (intended for local)
 * Make sure directory (UbuntuBackup) is owned by backup user (sudo chown -R backup:backup ..)
-* Copy backup-monthly.sh to /opt.
+- Copy backup-weekly to /etc/cron.weekly/ on Rasberry pi.
+- Copy GPG to Raspberrypi and install on Root home directory
+- Import and edit pgp key (https://stackoverflow.com/questions/\
+33361068/gnupg-there-is-no-assurance-this-key-belongs-to-the-named-user)
+-- gpg --import-key file.gpg
+-- gpg --edit-key KEY_ID
+-- gpg> trust
+-- Choose "5" - I trust ultimately
 
 TODO
 --
-* Cron needs to run as backup user
-* Create and securely store a GPG key (ie offline, printout). The key will be
-backed up in an encrypted file. If the key is lost from the laptop, recovery
-will not be possible
-* rysnc seems to work but takes just less than 24 hours for a full backup. May 
-be worth segregating small, medium and large files.
-
+* Check that directory exists on /mnt/backup NFS on the raspberryPi has a nasty
+tendancy to not work meanitng /mnt/backup is local!
 
 Troubleshooting
 --
 
 If rysnc gives "lack of space error", try rebooting the nfs service on the
-raspberry pi. This is done by "sudo service nfs-kernel-server restart".
+raspberry pi. This is done by "sudo service nfs-kernel-server restart". The 
+possbile solution to this is :
+https://raspberrypi.stackexchange.com/questions/69839/\
+    nfs-kernel-server-does-not-start-after-reboot
+I have implemented the config file, we'll try later after a reboot.
+
+GCP/rclone, gets throttled very quickly. Will take a number of days for initial
+upload.
 
