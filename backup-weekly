@@ -6,7 +6,7 @@
 KEY_ID=9E6A3CCB
 
 DUPLICITY_LOG=/var/log/duplicity.log
-ERROR_LOG=/var/log/duplcity.error.log
+ERROR_LOG=/var/log/duplicity.error.log
 
 BACKUP_SOURCE=/media/piDrive/UbuntuBackup/home
 BACKUP_DESTINATION=/media/piDrive/UbuntuBackup/duplicity
