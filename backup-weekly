@@ -42,7 +42,7 @@ if [ -f ../completed.flag ]
     else
         echo -- >> $DUPLICITY_LOG
         echo INC. DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
-        duplicity --encrypt-keys $KEY_ID $BACKUP_SOURCE file:/$BACKUP_DESTINATION \
+        duplicity --encrypt-key $KEY_ID $BACKUP_SOURCE file:/$BACKUP_DESTINATION \
             >> $DUPLICITY_LOG 2>> $ERROR_LOG
     fi
 # Log end time
