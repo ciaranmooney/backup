@@ -3,15 +3,13 @@
 # Ciarán Mooney
 # 2019
 
-KEY_ID=94D85C758DE604B2BA2D22ED27F71EEC07BD3CF6
+KEY_ID=9E6A3CCB
 
 DUPLICITY_LOG=/var/log/duplicity.log
 ERROR_LOG=/var/log/duplcity.error.log
 
 BACKUP_SOURCE=/media/piDrive/UbuntuBackup/home
 BACKUP_DESTINATION=/media/piDrive/UbuntuBackup/duplicity
-
-# Check destination folder exists (ie wi-fi working, nfs working) 
 
 # Log start time
 echo -- Starting Backup -- >> $DUPLICITY_LOG
@@ -31,18 +29,23 @@ if [ -f $BACKUP_SOURCE/../completed.flag ]
         echo -- >> $DUPLICITY_LOG
         echo FULL DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
         echo -- >> $DUPLICITY_LOG
-        echo REMOVING COMPLETED FLAG >> $DUPLICITY_LOG
-        rm $BACKUP_SOURCE/../completed.flag
         duplicity full --encrypt-key $KEY_ID $BACKUP_SOURCE \
-            file:/$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
+            file://$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
         duplicity remove-all-inc-of-but-n-full 30 --force $BACKUP_SOURCE \
             >> $DUPLICITY_LOG 2>> $ERROR_LOG
+        echo -- >> $DUPLICITY_LOG
+        echo REMOVING COMPLETED FLAG >> $DUPLICITY_LOG
+        echo -- >> $DUPLICITY_LOG
+        rm $BACKUP_SOURCE/../completed.flag
+        echo -- >> $DUPLICITY_LOG
         echo Removing Backup source >> $DUPLICITY_LOG
+        echo -- >> $DUPLICITY_LOG
         rm -fr $BACKUP_SOURCE
     else
         echo -- >> $DUPLICITY_LOG
         echo INC. DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
-        duplicity --encrypt-key $KEY_ID $BACKUP_SOURCE file:/$BACKUP_DESTINATION \
+        echo -- >> $DUPLICITY_LOG
+        duplicity --encrypt-key $KEY_ID $BACKUP_SOURCE file://$BACKUP_DESTINATION \
             >> $DUPLICITY_LOG 2>> $ERROR_LOG
     fi
 # Log end time
@@ -54,6 +57,4 @@ echo -- >> $DUPLICITY_LOG
 echo -- Error log finished -- >> $ERROR_LOG
 echo $(date) >> $ERROR_LOG
 echo -- >> $ERROR_LOG
-
-# Set complete flag
 
