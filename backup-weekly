@@ -24,7 +24,7 @@ echo $(date) >> $ERROR_LOG
 echo -- >> $ERROR_LOG
 
 # Check for completed Rsync-Backup from Client
-if [ -f ../completed.flag ]
+if [ -f $BACKUP_SOURCE/../completed.flag ]
 # If backup from client completed, then do full backup and delete backup
 # ready for next complete backup. Else, do a an incremental backup
     then
@@ -32,7 +32,7 @@ if [ -f ../completed.flag ]
         echo FULL DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
         echo -- >> $DUPLICITY_LOG
         echo REMOVING COMPLETED FLAG >> $DUPLICITY_LOG
-        rm ../completed.flag
+        rm $BACKUP_SOURCE/../completed.flag
         duplicity full --encrypt-key $KEY_ID $BACKUP_SOURCE \
             file:/$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
         duplicity remove-all-inc-of-but-n-full 30 --force $BACKUP_SOURCE \
