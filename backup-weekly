@@ -31,7 +31,7 @@ if [ -f $BACKUP_SOURCE/../completed.flag ]
         echo -- >> $DUPLICITY_LOG
         duplicity full --encrypt-key $KEY_ID $BACKUP_SOURCE \
             file://$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
-        duplicity remove-all-inc-of-but-n-full 30 --force $BACKUP_SOURCE \
+        duplicity remove-all-inc-of-but-n-full 30 --force file://$BACKUP_DESTINATION \
             >> $DUPLICITY_LOG 2>> $ERROR_LOG
         echo -- >> $DUPLICITY_LOG
         echo REMOVING COMPLETED FLAG >> $DUPLICITY_LOG
