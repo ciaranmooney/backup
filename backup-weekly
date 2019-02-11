@@ -3,6 +3,8 @@
 # Ciarán Mooney
 # 2019
 
+KEY_ID=94D85C758DE604B2BA2D22ED27F71EEC07BD3CF6
+
 DUPLICITY_LOG=/var/log/duplicity.log
 ERROR_LOG=/var/log/duplcity.error.log
 
@@ -31,8 +33,8 @@ if [ -a ../completed.flag ];
         echo -- >> $DUPLICITY_LOG
         echo REMOVING COMPLETED FLAG >> $DUPLICITY_LOG
         rm ../completed.flag
-        duplicity full $BACKUP_SOURCE file:/$BACKUP_DESTINATION \
-            >> $DUPLICITY_LOG 2>> $ERROR_LOG
+        duplicity full --encrypt-key $KEY_ID $BACKUP_SOURCE \
+            file:/$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
         duplicity remove-all-inc-of-but-n-full 30 --force $BACKUP_SOURCE \
             >> $DUPLICITY_LOG 2>> $ERROR_LOG
         echo Removing Backup source >> $DUPLICITY_LOG
@@ -40,7 +42,7 @@ if [ -a ../completed.flag ];
     else
         echo -- >> $DUPLICITY_LOG
         echo INC. DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
-        duplicity $BACKUP_SOURCE file:/$BACKUP_DESTINATION \
+        duplicity --encrypt-keys $KEY_ID $BACKUP_SOURCE file:/$BACKUP_DESTINATION \
             >> $DUPLICITY_LOG 2>> $ERROR_LOG
     fi
 # Log end time
