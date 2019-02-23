@@ -48,7 +48,11 @@ Note, UID/GID 34 on default Raspbian is the backup user (intended for local)
 -- gpg --edit-key KEY_ID
 -- gpg> trust
 -- Choose "5" - I trust ultimately
-
+- Install rclone using rclone_install.sh
+- Config rclone, sudo rclone config
+-- the config parameters seem (location, type:coldine etc) seem not to matter.
+    the bucket ID seems to be honoured in sync command.
+ 
 TODO
 --
 * Check that directory exists on /mnt/backup NFS on the raspberryPi has a nasty
