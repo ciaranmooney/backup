@@ -14,43 +14,33 @@ BACKUP_DESTINATION=/mnt/backup
 # Check destination folder exists (ie wi-fi working, nfs working) 
 
 # Log start time
-echo -- Starting Backup -- >> $BACKUP_LOG
-echo $(date) >> $BACKUP_LOG
-echo -- >> $BACKUP_LOG
+echo $(date) -- Starting Backup -- >> $BACKUP_LOG
 
 # Error log start time
-echo -- Error Log Start -- >> $ERROR_LOG
-echo $(date) >> $ERROR_LOG
-echo -- >> $ERROR_LOG
+echo $(date) -- Error Log Start -- >> $ERROR_LOG
 
 # Backup small files first
-echo -- >> $BACKUP_LOG
-echo BACKING UP SMALL FILES >> $BACKUP_LOG
+echo $(date) -- BACKING UP SMALL FILES >> $BACKUP_LOG
 rsync -rvz --exclude-from $EXCLUDE_LIST --times \
     --max-size=1M $BACKUP_DIR $BACKUP_DESTINATION >> $BACKUP_LOG 2>> $ERROR_LOG
 # Log end time
 
 # Log start time
 # Backup larger files second
-echo -- >> $BACKUP_LOG
-echo BACKING UP LARGE FILES >> $BACKUP_LOG
+echo $(date) -- BACKING UP LARGE FILES >> $BACKUP_LOG
 rsync -rvz --exclude-from $EXCLUDE_LIST --times \
     --min-size=1M $BACKUP_DIR $BACKUP_DESTINATION >> $BACKUP_LOG 2>> $ERROR_LOG
 
 # Created a file to designate backup completed.
 touch $BACKUP_DESTINATION/completed.flag
-echo -- Completed Backup -- >> $BACKUP_LOG
-echo -- Completed Flag Written -- >> $BACKUP_LOG
+echo $(date) -- Completed Backup -- >> $BACKUP_LOG
+echo $(date) -- Completed Flag Written -- >> $BACKUP_LOG
 
 # Log end time
-echo -- Finishing Backup -- >> $BACKUP_LOG
-echo $(date) >> $BACKUP_LOG
-echo -- >> $BACKUP_LOG
+echo $(date) -- Finishing Backup -- >> $BACKUP_LOG
 
 # Error log end time
-echo -- Error log finished -- >> $ERROR_LOG
-echo $(date) >> $ERROR_LOG
-echo -- >> $ERROR_LOG
+echo $(date) -- Error log finished -- >> $ERROR_LOG
 
 
 # Set complete flag
