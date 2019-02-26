@@ -10,13 +10,13 @@ BACKUP_SOURCE=/media/piDrive/UbuntuBackup/duplicity
 BUCKET_ID=7c5d8617-a914-4916-b067-d4faf730fb6a
 
 # Log start time
-echo $(date) -- Starting Backup -- >> $DUPLICITY_LOG
+echo $(date) -- Starting Backup -- >> $CLOUD_LOG
 
 # Error log start time
 echo $(date) -- Error Log Start -- >> $ERROR_LOG
 
-echo -- Backup to Google Cloud Platform >> $DUPLICITY_LOG
+echo -- Backup to Google Cloud Platform >> $CLOUD_LOG
 rclone -v sync $BACKUP_SOURCE remote:$BUCKET_ID
-echo $(date) -- Finishing Backup -- >> $DUPLICITY_LOG
+echo $(date) -- Finishing Backup -- >> $CLOUD_LOG
 echo $(date) -- Error log finished -- >> $ERROR_LOG
 
