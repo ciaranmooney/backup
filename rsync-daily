@@ -11,42 +11,35 @@ ERROR_LOG=/var/log/backup.error.log
 BACKUP_DIR=/home
 BACKUP_DESTINATION=/mnt/backup
 
-# Check destination folder exists (ie wi-fi working, nfs working) 
-
 # Log start time
 echo $(date) -- Starting Backup -- >> $BACKUP_LOG
 
 # Error log start time
 echo $(date) -- Error Log Start -- >> $ERROR_LOG
 
-# Backup small files first
-echo $(date) -- BACKING UP SMALL FILES >> $BACKUP_LOG
-rsync -rvz --exclude-from $EXCLUDE_LIST --times \
-    --max-size=1M $BACKUP_DIR $BACKUP_DESTINATION >> $BACKUP_LOG 2>> $ERROR_LOG
-# Log end time
+if [ -f $BACKUP_SOURCE/backup.present]
+    then
+        # Backup small files first
+        echo $(date) -- BACKING UP SMALL FILES >> $BACKUP_LOG
+        rsync -rvz --exclude-from $EXCLUDE_LIST --times \
+            --max-size=1M $BACKUP_DIR $BACKUP_DESTINATION >> $BACKUP_LOG 2>> $ERROR_LOG
+        # Log end time
 
-# Log start time
-# Backup larger files second
-echo $(date) -- BACKING UP LARGE FILES >> $BACKUP_LOG
-rsync -rvz --exclude-from $EXCLUDE_LIST --times \
-    --min-size=1M $BACKUP_DIR $BACKUP_DESTINATION >> $BACKUP_LOG 2>> $ERROR_LOG
+        # Log start time
+        # Backup larger files second
+        echo $(date) -- BACKING UP LARGE FILES >> $BACKUP_LOG
+        rsync -rvz --exclude-from $EXCLUDE_LIST --times \
+            --min-size=1M $BACKUP_DIR $BACKUP_DESTINATION >> $BACKUP_LOG 2>> $ERROR_LOG
 
-# Created a file to designate backup completed.
-touch $BACKUP_DESTINATION/completed.flag
-echo $(date) -- Completed Backup -- >> $BACKUP_LOG
-echo $(date) -- Completed Flag Written -- >> $BACKUP_LOG
+        # Created a file to designate backup completed.
+        touch $BACKUP_DESTINATION/completed.flag
+        echo $(date) -- Completed Backup -- >> $BACKUP_LOG
+        echo $(date) -- Completed Flag Written -- >> $BACKUP_LOG
 
-# Log end time
-echo $(date) -- Finishing Backup -- >> $BACKUP_LOG
+        # Log end time
+        echo $(date) -- Finishing Backup -- >> $BACKUP_LOG
 
-# Error log end time
-echo $(date) -- Error log finished -- >> $ERROR_LOG
-
-
-# Set complete flag
-
-# -r - recursive
-# -v - verbose
-# -z - compress files during transfer
-# --times - compare times and copy if file modified
-
+        # Error log end time
+        echo $(date) -- Error log finished -- >> $ERROR_LOG
+    else
+        echo $(date) -- Backup directory not present >> $ERROR_LOG
