@@ -57,6 +57,9 @@ TODO
 --
 * Check that directory exists on /mnt/backup NFS on the raspberryPi has a nasty
 tendancy to not work meanitng /mnt/backup is local!
+* Throttle rsync, think it clobbers my network connection sometimes.
+* Set ordering to newest first (then size)
+* Add backup.present file to server install script.
 
 Troubleshooting
 --
