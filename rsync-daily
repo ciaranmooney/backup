@@ -46,6 +46,7 @@ if [ -f $BACKUP_DESTINATION/backup.present ]
         # Error log end time
         echo $(date) -- Error log finished -- >> $ERROR_LOG
     else
+        echo $(date) -- Finishing Backup -- >> $BACKUP_LOG
         echo $(date) -- Backup directory not present >> $ERROR_LOG
 <<<<<<< HEAD
 =======
