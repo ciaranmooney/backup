@@ -20,7 +20,7 @@ The server (RaspberryPi) will backup incrementally (every day) and fully
 The duplicity created backups can then be rsync'd off site 
 (eg Google Nearline/Coldline).
 
-Install
+Client Install
 --
 - Run "install.sh"
 -- Moves rsync-daily to /etc/cron.daily/
@@ -52,6 +52,8 @@ Note, UID/GID 34 on default Raspbian is the backup user (intended for local)
 - Config rclone, sudo rclone config
 -- the config parameters seem (location, type:coldine etc) seem not to matter.
     the bucket ID seems to be honoured in sync command.
+- Copy cloud_backup to raspberrypi, move to /etc/cron.weekly.
+
  
 TODO
 --
@@ -60,6 +62,14 @@ tendancy to not work meanitng /mnt/backup is local!
 * Throttle rsync, think it clobbers my network connection sometimes.
 * Set ordering to newest first (then size)
 * Add backup.present file to server install script.
+
+Notes
+--
+* Initial rclone backup using throttling. Max upload speed of our internet
+connection is 1.1 Mbit/s. Command below to run in background with limiting.
+sudo rclone --bwlimit "08:00,0.5M 18:00,.1M 22:00,off" \
+    -v sync /media/piDrive/UbuntuBackup/duplicity \
+    remote:7c5d8617-a914-4916-b067-d4faf730fb6a 2> /tmp/cloud.log & 
 
 Troubleshooting
 --
