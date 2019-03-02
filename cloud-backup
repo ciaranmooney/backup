@@ -4,22 +4,16 @@
 # 2019
 
 CLOUD_LOG=/var/log/cloud.log
-<<<<<<< HEAD
 ERROR_LOG=/var/log/cloud.error.log
-=======
->>>>>>> Created bash script to backup to GCP.
 
 BACKUP_SOURCE=/media/piDrive/UbuntuBackup/duplicity
 BUCKET_ID=7c5d8617-a914-4916-b067-d4faf730fb6a
 
-<<<<<<< HEAD
-=======
 BWLIMIT="08:00,0.5M 18:00,.1M 22:00,off"
 # Max speed of internet was 1.1Mbit/s
 # Limit is 0.5Mbit/s after 08.00 every morning
 # .1Mbit/s in evening, and limitless "off" overnight.
 
->>>>>>> Created bash script to backup to GCP.
 # Log start time
 echo $(date) -- Starting Backup -- >> $CLOUD_LOG
 
@@ -27,13 +21,9 @@ echo $(date) -- Starting Backup -- >> $CLOUD_LOG
 echo $(date) -- Error Log Start -- >> $ERROR_LOG
 
 echo -- Backup to Google Cloud Platform >> $CLOUD_LOG
-<<<<<<< HEAD
-rclone -v sync $BACKUP_SOURCE remote:$BUCKET_ID
-=======
 rclone --bwlimit $BWLIMIT -v sync $BACKUP_SOURCE remote:$BUCKET_ID 2>> $CLOUD_LOG 
 # rclone defaults to STDERR, hence 2>>
 
->>>>>>> Created bash script to backup to GCP.
 echo $(date) -- Finishing Backup -- >> $CLOUD_LOG
 echo $(date) -- Error log finished -- >> $ERROR_LOG
 
