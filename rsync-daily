@@ -17,11 +17,7 @@ echo $(date) -- Starting Backup -- >> $BACKUP_LOG
 # Error log start time
 echo $(date) -- Error Log Start -- >> $ERROR_LOG
 
-<<<<<<< HEAD
-if [ -f $BACKUP_SOURCE/backup.present]
-=======
 if [ -f $BACKUP_DESTINATION/backup.present ]
->>>>>>> Added check for NFS directory being mounted.
     then
         # Backup small files first
         echo $(date) -- BACKING UP SMALL FILES >> $BACKUP_LOG
@@ -48,8 +44,5 @@ if [ -f $BACKUP_DESTINATION/backup.present ]
     else
         echo $(date) -- Finishing Backup -- >> $BACKUP_LOG
         echo $(date) -- Backup directory not present >> $ERROR_LOG
-<<<<<<< HEAD
-=======
     fi
 
->>>>>>> Added check for NFS directory being mounted.
