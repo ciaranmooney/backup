@@ -12,7 +12,7 @@ BUCKET_ID=7c5d8617-a914-4916-b067-d4faf730fb6a
 BWLIMIT="08:00,25 18:00,5 22:00,off"
 # Max speed of internet was 1.1Mbit/s
 # Note rclone uses bytes NOT bits, seem max speed is approx 100 kBytes/s, the
-# limit runs at 50 kBytes/s during day, 10 kBytes/s in evening, and unlimited
+# limit runs at 50 kBytes/s during day, 5 kBytes/s in evening, and unlimited
 # during the night
 
 # Log start time
@@ -22,7 +22,7 @@ echo $(date) -- Starting Backup -- >> $CLOUD_LOG
 echo $(date) -- Error Log Start -- >> $ERROR_LOG
 
 echo -- Backup to Google Cloud Platform >> $CLOUD_LOG
-rclone --bwlimit $BWLIMIT -v sync $BACKUP_SOURCE --include *full* remote:$BUCKET_ID 2>> $CLOUD_LOG 
+rclone --bwlimit "$BWLIMIT" sync $BACKUP_SOURCE --include *full* remote:$BUCKET_ID 2>> $CLOUD_LOG 
 # rclone defaults to STDERR, hence 2>>
 
 echo $(date) -- Finishing Backup -- >> $CLOUD_LOG
