@@ -61,10 +61,15 @@ Note, UID/GID 34 on default Raspbian is the backup user (intended for local)
  
 TODO
 --
+* Change PGP key to one I actually use.
+* Change server_install.sh to server_copy.sh, and copy across a
+server_install.sh that installs files.
 * Use logrotate on client and server
 * Check that directory exists on /mnt/backup NFS on the raspberryPi has a nasty
 tendancy to not work meanitng /mnt/backup is local!
 * Add backup.present file to server install script.
+* Add backup to Google Cloud of "large" files, UCL and Bham Uni backups, so
+they don't get copied every day by rsync.
 
 Notes
 --
