@@ -28,7 +28,7 @@ if [ -f $BACKUP_DESTINATION/backup.present ]
         # Log start time
         # Backup larger files second
         echo $(date) -- BACKING UP LARGE FILES >> $BACKUP_LOG
-        rsync -rvvz --exclude-from $EXCLUDE_LIST --times \
+        rsync -rvz --exclude-from $EXCLUDE_LIST --times \
             --min-size=1M $BACKUP_DIR $BACKUP_DESTINATION >> $BACKUP_LOG 2>> $ERROR_LOG
 
         # Created a file to designate backup completed.
