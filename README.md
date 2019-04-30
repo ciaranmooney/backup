@@ -61,6 +61,8 @@ Note, UID/GID 34 on default Raspbian is the backup user (intended for local)
  
 TODO
 --
+* Duplicity backup on server (raspberrypi) uses a ton of /tmp space which
+clobbers the install. Need to increase size of raspberrypi root or tmp 
 * Change PGP key to one I actually use.
 * Change server_install.sh to server_copy.sh, and copy across a
 server_install.sh that installs files.
