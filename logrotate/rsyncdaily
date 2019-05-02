@@ -1,0 +1,19 @@
+/var/log/backup.log
+{
+        rotate 8
+        weekly
+        missingok
+        notifempty
+        delaycompress
+        compress
+}
+/var/log/backup.error.log
+{
+        rotate 8
+        weekly
+        missingok
+        notifempty
+        delaycompress
+        compress
+}
+
