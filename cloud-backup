@@ -22,7 +22,7 @@ echo $(date) -- Starting Backup -- >> $CLOUD_LOG
 echo $(date) -- Error Log Start -- >> $ERROR_LOG
 
 echo -- Backup to Google Cloud Platform >> $CLOUD_LOG
-rclone -v --bwlimit "$BWLIMIT" sync $BACKUP_SOURCE --include *full* remote:$BUCKET_ID 2>> $CLOUD_LOG 
+rclone -v --bwlimit "$BWLIMIT" sync $BACKUP_SOURCE --include "*full*" remote:$BUCKET_ID 2>> $CLOUD_LOG 
 # rclone defaults to STDERR, hence 2>>
 
 echo $(date) -- Finishing Backup -- >> $CLOUD_LOG
