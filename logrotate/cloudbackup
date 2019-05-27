@@ -1,0 +1,19 @@
+/var/log/duplicity.log
+{
+        rotate 8
+        montly
+        missingok
+        notifempty
+        delaycompress
+        compress
+}
+/var/log/duplicity.error.log
+{
+        rotate 8
+        montly
+        missingok
+        notifempty
+        delaycompress
+        compress
+}
+
