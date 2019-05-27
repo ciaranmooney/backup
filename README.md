@@ -61,6 +61,9 @@ Note, UID/GID 34 on default Raspbian is the backup user (intended for local)
  
 TODO
 --
+* Errors in duplicity are not caught and script carries on regardless, 
+in the case of lack of space it deletes the backup flags etc. so the client
+will start a full backup again.
 * Duplicity backup on server (raspberrypi) uses a ton of /tmp space which
 clobbers the install. Need to increase size of raspberrypi root or tmp 
 * Change PGP key to one I actually use.
@@ -91,3 +94,6 @@ https://raspberrypi.stackexchange.com/questions/69839/\
     nfs-kernel-server-does-not-start-after-reboot
 I have implemented the config file, we'll try later after a reboot.
 
+If wireless router is changed (ISP changed) then you may need to reconfigure
+either the fixed DHCP addresses for laptops and raspberrypi, and/or configure
+/etc/fstab (client) and /etc/exports (server)

@@ -3,7 +3,7 @@
 # Ciarán Mooney
 # 2019
 
-KEY_ID=9E6A3CCB
+KEY_ID=857DADFD
 
 DUPLICITY_LOG=/var/log/duplicity.log
 ERROR_LOG=/var/log/duplicity.error.log
