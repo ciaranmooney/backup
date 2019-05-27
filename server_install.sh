@@ -1,10 +1,9 @@
 #!/bin/sh
-# Transfers server scripts to my raspberrypi. Note, only moves them to the home
-# directories.
+# Install script for putting scripts in anacron folder.
 # Ciarán Mooney
 # 2019
 
-scp backup-weekly pi@raspberrypi.local:~/.
-scp cloud-backup pi@raspberrypi.local:~/.
+cp backup-weekly /etc/cron.weekly/.
+cp cloud-backup /etc/cron.monthly/. 
 
 
