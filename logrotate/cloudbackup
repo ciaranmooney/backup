@@ -1,16 +1,16 @@
-/var/log/duplicity.log
+/var/log/cloud.log
 {
-        rotate 8
-        montly
+        rotate 12
+        monthly
         missingok
         notifempty
         delaycompress
         compress
 }
-/var/log/duplicity.error.log
+/var/log/cloud.error.log
 {
-        rotate 8
-        montly
+        rotate 12
+        monthly
         missingok
         notifempty
         delaycompress
