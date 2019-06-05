@@ -30,7 +30,7 @@ if [ -f $BACKUP_SOURCE/../completed.flag ]
         echo -- >> $DUPLICITY_LOG
         echo FULL DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
         echo -- >> $DUPLICITY_LOG
-        duplicity full --metadata-sync-mode partial --tempdir $BACKUP_TMP \
+        duplicity full --tempdir $BACKUP_TMP \
             --encrypt-key $KEY_ID $BACKUP_SOURCE file://$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
         duplicity remove-all-inc-of-but-n-full 4 --force file://$BACKUP_DESTINATION \
             >> $DUPLICITY_LOG 2>> $ERROR_LOG
