@@ -64,11 +64,6 @@ TODO
 * Errors in duplicity are not caught and script carries on regardless, 
 in the case of lack of space it deletes the backup flags etc. so the client
 will start a full backup again.
-* Duplicity backup on server (raspberrypi) uses a ton of /tmp space which
-clobbers the install. Need to increase size of raspberrypi root or tmp 
-server_install.sh that installs files.
-* Check that directory exists on /mnt/backup NFS on the raspberryPi has a nasty
-tendancy to not work meanitng /mnt/backup is local!
 * Add backup to Google Cloud of "large" files, UCL and Bham Uni backups, so
 they don't get copied every day by rsync.
 
