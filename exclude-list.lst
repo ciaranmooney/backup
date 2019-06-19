@@ -1,8 +1,7 @@
-/home/*/.local/share/Trash
 /home/*/Music
 /home/*/Downloads
 /home/*/Private
-*.Trash-* # Some folders seem to have a hidden .Trash-1000
 /home/*/.*
 /home/*/AppData # Jenny's old windows Backup.
 /home/*/Videos/BBC\ iPlayer/
+*.Trash-* # Some folders seem to have a hidden .Trash-1000
