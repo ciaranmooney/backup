@@ -4,7 +4,6 @@
 # 2019
 
 cp backup-weekly /etc/cron.weekly/.
-cp cloud-backup /etc/cron.monthly/. 
 cp logrotate/cloudbackup /etc/logrotate.d/.  
 cp logrotate/rsyncdaily /etc/logrotate.d/.
 
