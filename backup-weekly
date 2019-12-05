@@ -31,7 +31,7 @@ if [ -f $BACKUP_SOURCE/../completed.flag ]
         echo FULL DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
         echo -- >> $DUPLICITY_LOG
         duplicity full --tempdir $BACKUP_TMP \
-            --encrypt-key $KEY_ID $BACKUP_SOURCE file://$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
+            $BACKUP_SOURCE file://$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
         duplicity remove-all-inc-of-but-n-full 4 --force file://$BACKUP_DESTINATION \
             >> $DUPLICITY_LOG 2>> $ERROR_LOG
         echo -- >> $DUPLICITY_LOG
@@ -46,7 +46,7 @@ if [ -f $BACKUP_SOURCE/../completed.flag ]
         echo -- >> $DUPLICITY_LOG
         echo INC. DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
         echo -- >> $DUPLICITY_LOG
-        duplicity --tempdir $BACKUP_TMP --encrypt-key $KEY_ID \
+        duplicity --tempdir $BACKUP_TMP \
             $BACKUP_SOURCE file://$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
     fi
 # Log end time
