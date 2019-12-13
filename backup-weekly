@@ -38,10 +38,6 @@ if [ -f $BACKUP_SOURCE/../completed.flag ]
         echo REMOVING COMPLETED FLAG >> $DUPLICITY_LOG
         echo -- >> $DUPLICITY_LOG
         rm $BACKUP_SOURCE/../completed.flag
-        echo -- >> $DUPLICITY_LOG
-        echo Removing Backup source >> $DUPLICITY_LOG
-        echo -- >> $DUPLICITY_LOG
-        rm -fr $BACKUP_SOURCE
     else
         echo -- >> $DUPLICITY_LOG
         echo INC. DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
