@@ -39,25 +39,21 @@ RaspberryPi, see:
 
 # Server Config
 ## Files
-* /etc/exports 
-/media/piDrive/UbuntuBackup     192.168.0.2(rw,no_subtree_check,all_squash,anonuid=34,anongid=34)
-Note, UID/GID 34 on default Raspbian is the backup user (intended for local)
-* Make sure directory (UbuntuBackup) is owned by backup user (sudo chown -R backup:backup ..)
- * Copy backup-weekly to /etc/cron.weekly/ on Rasberry pi.
- * Copy GPG to Raspberrypi and install on Root home directory
- * Import and edit pgp key (https://stackoverflow.com/questions/\
-33361068/gnupg-there-is-no-assurance-this-key-belongs-to-the-named-user)
-> gpg --import-key file.gpg
-> gpg --edit-key KEY_ID
->  gpg> trust
->  Choose "5" - I trust ultimately
-* Install rclone using rclone_install.sh
-* Config rclone, sudo rclone config
- * The config parameters seem (location, type:coldine etc) seem not to matter.
-    the bucket ID seems to be honoured in sync command.
-* Copy cloud_backup to raspberrypi, move to /etc/cron.weekly.
 
- 
+* Mount USB drive with fstab entry.
+> `UUID=f3e278c2-1043-4d4c-9440-e761d0a3aa77 /media/piDrive        ext4 defaults   0       2`
+* Export the backup folder as an NFS share, modify /etc/exports.
+> `/media/piDrive/UbuntuBackup     192.168.0.2(rw,no_subtree_check,all_squash,anonuid=34,anongid=34)`
+Note, UID/GID 34 on default Raspbian is the backup user (intende1d for local)
+* Make sure directory (UbuntuBackup) is owned by backup user (sudo chown -R backup:backup ..)
+* Run `server_install.sh` to copy cron script and log rotation configuration. 
+* Copy GPG to Raspberrypi and install on Root home directory
+ * Import and edit pgp key ([https://stackoverflow.com/questions/\
+33361068/gnupg-there-is-no-assurance-this-key-belongs-to-the-named-user])
+> `gpg --import-key file.gpg986`
+> `gpg --edit-key KEY_ID`
+>  `gpg> trust` Choose "5" - I trust ultimately
+
 # TODO
 
 * Errors in duplicity are not caught and script carries on regardless, 
