@@ -3,8 +3,6 @@
 # Ciarán Mooney
 # 2019
 
-KEY_ID=857DADFD
-
 DUPLICITY_LOG=/var/log/duplicity.log
 ERROR_LOG=/var/log/duplicity.error.log
 
@@ -22,29 +20,13 @@ echo -- Error Log Start -- >> $ERROR_LOG
 echo $(date) >> $ERROR_LOG
 echo -- >> $ERROR_LOG
 
-# Check for completed Rsync-Backup from Client
-if [ -f $BACKUP_SOURCE/../completed.flag ]
-# If backup from client completed, then do full backup and delete backup
-# ready for next complete backup. Else, do a an incremental backup
-    then
-        echo -- >> $DUPLICITY_LOG
-        echo FULL DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
-        echo -- >> $DUPLICITY_LOG
-        duplicity full --tempdir $BACKUP_TMP \
-            $BACKUP_SOURCE file://$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
-        duplicity remove-all-inc-of-but-n-full 4 --force file://$BACKUP_DESTINATION \
+echo -- >> $DUPLICITY_LOG
+echo FULL DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
+echo -- >> $DUPLICITY_LOG
+duplicity full --tempdir $BACKUP_TMP \
+    $BACKUP_SOURCE file://$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
+duplicity remove-all-inc-of-but-n-full 4 --force file://$BACKUP_DESTINATION \
             >> $DUPLICITY_LOG 2>> $ERROR_LOG
-        echo -- >> $DUPLICITY_LOG
-        echo REMOVING COMPLETED FLAG >> $DUPLICITY_LOG
-        echo -- >> $DUPLICITY_LOG
-        rm $BACKUP_SOURCE/../completed.flag
-    else
-        echo -- >> $DUPLICITY_LOG
-        echo INC. DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
-        echo -- >> $DUPLICITY_LOG
-        duplicity --tempdir $BACKUP_TMP \
-            $BACKUP_SOURCE file://$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
-    fi
 # Log end time
 echo -- Finishing Backup -- >> $DUPLICITY_LOG
 echo $(date) >> $DUPLICITY_LOG
