@@ -33,14 +33,17 @@ if [ -f $BACKUP_DESTINATION/backup.present ]
 
         echo $(date) -- Completed Backup -- >> $BACKUP_LOG
         echo $(date) -- Completed Flag Written -- >> $BACKUP_LOG
-
+        
+        # Created a file to designate backup completed.
+        echo $(date -I) > $BACKUP_DESTINATION/completed.flag
+        
         # Log end time
         echo $(date) -- Finishing Backup -- >> $BACKUP_LOG
 
         # Error log end time
         echo $(date) -- Error log finished -- >> $ERROR_LOG
     else
-        echo $(date) -- Finishing Backup -- >> $BACKUP_LOG
         echo $(date) -- Backup directory not present >> $ERROR_LOG
+        echo $(date) -- Finishing Backup -- >> $BACKUP_LOG
     fi
 
