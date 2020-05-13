@@ -23,7 +23,7 @@ echo -- >> $ERROR_LOG
 echo -- >> $DUPLICITY_LOG
 echo FULL DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
 echo -- >> $DUPLICITY_LOG
-duplicity --tempdir $BACKUP_TMP \
+duplicity --no-encryption --tempdir $BACKUP_TMP \
     $BACKUP_SOURCE file://$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
 duplicity remove-all-inc-of-but-n-full 4 --force file://$BACKUP_DESTINATION \
             >> $DUPLICITY_LOG 2>> $ERROR_LOG
