@@ -3,7 +3,8 @@
 # Ciarán Mooney
 # 2019
 
-cp backup-weekly /etc/cron.weekly/.
+cp backup-inc /etc/cron.weekly/.
+cp backup-full /etc/cron.monthly/.
 cp logrotate/cloudbackup /etc/logrotate.d/.  
 cp logrotate/rsyncdaily /etc/logrotate.d/.
 
