@@ -1,0 +1,39 @@
+#!/bin/sh
+# Server backup script
+# Ciarán Mooney
+# 2019
+
+DUPLICITY_LOG=/var/log/duplicity.log
+ERROR_LOG=/var/log/duplicity.error.log
+
+BACKUP_SOURCE=/media/piDrive/UbuntuBackup/home
+BACKUP_DESTINATION=/media/piDrive/UbuntuBackup/duplicity
+BACKUP_TMP=/media/piDrive/UbuntuBackup/tmp
+
+# Log start time
+echo -- Starting Backup -- >> $DUPLICITY_LOG
+echo $(date) >> $DUPLICITY_LOG
+echo -- >> $DUPLICITY_LOG
+
+# Error log start time
+echo -- Error Log Start -- >> $ERROR_LOG
+echo $(date) >> $ERROR_LOG
+echo -- >> $ERROR_LOG
+
+echo -- >> $DUPLICITY_LOG
+echo FULL DUPLCITIY BACKUP STARTING >> $DUPLICITY_LOG
+echo -- >> $DUPLICITY_LOG
+duplicity full --tempdir $BACKUP_TMP \
+    $BACKUP_SOURCE file://$BACKUP_DESTINATION >> $DUPLICITY_LOG 2>> $ERROR_LOG
+duplicity remove-all-inc-of-but-n-full 4 --force file://$BACKUP_DESTINATION \
+            >> $DUPLICITY_LOG 2>> $ERROR_LOG
+# Log end time
+echo -- Finishing Backup -- >> $DUPLICITY_LOG
+echo $(date) >> $DUPLICITY_LOG
+echo -- >> $DUPLICITY_LOG
+
+# Error log end time
+echo -- Error log finished -- >> $ERROR_LOG
+echo $(date) >> $ERROR_LOG
+echo -- >> $ERROR_LOG
+
