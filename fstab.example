@@ -1,0 +1,2 @@
+192.168.1.184:/media/piDrive/UbuntuBackup       /mnt/backup   nfs nofail,x-systemd.automount,x-systemd.requires=network-online.target,x-systemd.device-timeout=100    0    0
+
